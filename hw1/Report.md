@@ -31,6 +31,8 @@ The comparison of average sentiment scores between TextBlob and VADER highlighte
 
 1. NER Analysis:
 
+![NER visualization](NER.jpg)
+
 The entity distribution across categories indicated the concentration of specific themes and subjects within each category. For example, the business category may contain more ORG and MONEY entities, which aligns with the expectations for such content.
 
 2. Sentiment Analysis Discrepancies:
