@@ -3,4 +3,5 @@
 # Applications of NL(X) and LLm
 This is my public portfolio for the course Applications of NL(X) and LLM at CMU💻
 
-# Homework and labs
+# Homeworks
+1. [HW1 - Text Classification Task using BBC articles](hw1/Report.md)
