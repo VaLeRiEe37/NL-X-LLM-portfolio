@@ -2,6 +2,8 @@
 
 # HW#1 Report - Text Classification Task
 
+[Click to see the programming notebook](hw1.ipynb)
+
 ## A. Tools or Frameworks Used
 
 1. NLTK: Leveraged for sentiment analysis using the VADER tool, which is tailored for social media text sentiment assessment.
