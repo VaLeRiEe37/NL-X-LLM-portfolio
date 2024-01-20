@@ -37,8 +37,16 @@ The entity distribution across categories indicated the concentration of specifi
 
 2. Sentiment Analysis Discrepancies:
 
+![visualization]("textblob and vadar.jpg")
+
 The differing sentiment scores between TextBlob and VADER can be attributed to their underlying methodologies. VADER, with its emphasis on social media language, may interpret sentiment intensity differently than TextBlob, which uses a more general approach. This distinction can cause similar texts to receive varying sentiment scores from each tool, as observed in the visualizations.
 
 3. Average Sentiment Score Comparison:
 
+![visualization]("average sentiment scores.jpg")
+
 When we compare the average sentiment scores, we notice that some categories show a larger gap between the two tools than others. This variation could be influenced by the linguistic characteristics of the texts in each category. For example, texts with more nuanced language or ambiguous sentiment expressions might be scored differently by the two methods.
+
+4. Topic Modeling Analysis:
+
+![visualization]("topic modeling.jpg")
