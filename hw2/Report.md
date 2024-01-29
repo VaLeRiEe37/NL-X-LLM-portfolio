@@ -27,7 +27,7 @@ Approach and Findings:
 ### Application - Transforming Embeddings for a Specific Task
 
 - Applied a `debias` function to the GloVe embeddings to address gender bias, aiming to create a more equitable NLP model.
-- After debiasing, the embeddings were used to train a logistic regression model on a separate Kaggle dataset tailored for text classification.
+- After debiasing, the embeddings were used to train a logistic regression model on [a separate Kaggle dataset](https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis) tailored for text classification.
 - The model achieved an accuracy of **72.15%**, which serves as a benchmark to understand the impact of debiasing on NLP tasks.
 ![example](example.png)
 - The comparison between the classification performance before and after debiasing suggested that the debiasing process preserved the utility of the embeddings while promoting fairness.
