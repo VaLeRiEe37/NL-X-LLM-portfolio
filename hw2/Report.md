@@ -20,6 +20,7 @@ Approach and Findings:
 Approach and Findings:
 
 - Employed PCA for dimensionality reduction, effectively mapping high-dimensional vectors onto a 2D plane.
+![PCA](PCA.png)
 - Visual analysis of clusters confirmed the intuitive grouping of domain-specific terms.
 - Distances between points served as a proxy for semantic similarity, with related terms like "email" and "message" being closer together.
 
@@ -28,6 +29,7 @@ Approach and Findings:
 - Applied a `debias` function to the GloVe embeddings to address gender bias, aiming to create a more equitable NLP model.
 - After debiasing, the embeddings were used to train a logistic regression model on a separate Kaggle dataset tailored for text classification.
 - The model achieved an accuracy of **72.15%**, which serves as a benchmark to understand the impact of debiasing on NLP tasks.
+![example](example.png)
 - The comparison between the classification performance before and after debiasing suggested that the debiasing process preserved the utility of the embeddings while promoting fairness.
 
 ### Interpretation of Findings
