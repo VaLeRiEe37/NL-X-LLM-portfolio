@@ -29,18 +29,18 @@ I used LSTM model in this case due to its proficiency in handling sequential dat
 The evaluation metrics focused on were accuracy, precision, recall, and F1-score, with a particular emphasis on precision and recall to effectively measure the model's capability in detecting hate speech instances.
 
 ### Results and Insights
-![loss.png]
+![loss](loss.png)
 
 The precision and recall plot suggests that while the model learns to identify hate speech more precisely over time, its recall, especially on the validation data, remains low. The high variability in validation precision and the consistently low validation recall indicate the model's difficulty in generalizing the detection of hate speech to unseen data.
 
-![precision.png]
+![precision](precision.png)
 
 The loss and accuracy plot demonstrates that the model is improving on the training set but struggles to maintain consistent performance on the validation set. The fluctuations in validation loss and accuracy underscore the challenges of modeling with imbalanced data, emphasizing the need for a more nuanced evaluation of model performance, particularly in terms of how well it identifies the minority class (hate speech).
 
 Both plots together suggest that while the LSTM model is learning to identify hate speech, its ability to do so is still constrained by the imbalanced nature of the dataset. Precision and recall are crucial metrics for this problem, and the model's relatively low recall on the training plot indicates that further work is needed to balance the trade-off between precision and recall. If I had more time to do, hyperparameter tuning, more training epochs, or techniques to address class imbalance could potentially lead to better model performance.
 
 I also run some classic ML and below is the metrics comparison:
-![comparison.png]
+![comparison](comparison.png)
 
 For LSTM, despite having the highest precision, has a very low recall, indicating that while it's cautious about labeling a comment as hate speech, it fails to detect many actual instances of it. This cautious approach can be due to the LSTM's sensitivity to the sequence of words and the context, which might make it more conservative in its predictions.
 
