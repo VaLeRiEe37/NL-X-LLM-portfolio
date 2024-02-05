@@ -1,4 +1,4 @@
-| [home page](https://valeriee37.github.io/NLXLLM-portfolio/) | [Individual Assignments](https://tbd.html) | [Group Project](https://tbd.html) |
+| [Home Page](https://valeriee37.github.io/NLXLLM-portfolio/) | [Individual Assignments](https://tbd.html) | [Group Project](https://tbd.html) |
 
 # HW#3 Report - Hate Speech Detection
 
