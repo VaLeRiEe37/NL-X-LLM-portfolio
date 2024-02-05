@@ -8,34 +8,48 @@
 
 ## Task Description
 
-### Exploring Word Embeddings
+### Data Preprocessing and Exploration
 
-Approach and Findings:
+I used the `cleaned_df.pkl` from the source repo. Then processed the following during the process...
 
-- Downloaded 100-dimensional GloVe vectors ([Dataset source](https://www.kaggle.com/datasets/rtatman/glove-global-vectors-for-word-representation)), chosen for their balance between computational efficiency and semantic richness.
-- Selected words related to technology, such as "computer", "internet", and "software", to explore their semantic neighbors.
-- Conducted vector arithmetic to uncover relational parallels, discovering that "king" - "man" + "woman" closely equates to "queen", illustrating the embeddings' capture of gender relationships.
-- Nearest neighbor searches revealed clusters of semantically related terms, underscoring the embeddings' effectiveness in grouping conceptually similar words.
+- Text normalization to convert text to a uniform case, remove special characters, and standardize language expressions.
+- Removal of noise such as URLs, user mentions, and non-textual elements that do not contribute to the classification task.
+- Addressing class imbalance through techniques like SMOTE or undersampling to ensure the model learns from a balanced representation of both classes.
 
-### Visualization of Embedding Spaces
+### Model Implementation
 
-Approach and Findings:
+I used LSTM model in this case due to its proficiency in handling sequential data and its ability to capture long-term dependencies. Key considerations in the model design included:
 
-- Employed PCA for dimensionality reduction, effectively mapping high-dimensional vectors onto a 2D plane.
-![PCA](PCA.png)
-- Visual analysis of clusters confirmed the intuitive grouping of domain-specific terms.
-- Distances between points served as a proxy for semantic similarity, with related terms like "email" and "message" being closer together.
+- Utilization of pre-trained word embeddings (from [BERT](https://huggingface.co/Hate-speech-CNERG/bert-base-uncased-hatexplain)) to enrich the model's understanding of semantic relationships within the text.
+- Incorporation of dropout and regularization techniques to mitigate overfitting and enhance the model's generalization capabilities.
 
-### Application - Transforming Embeddings for a Specific Task
 
-- Applied a `debias` function to the GloVe embeddings to address gender bias, aiming to create a more equitable NLP model.
-- After debiasing, the embeddings were used to train a logistic regression model on [a separate Kaggle dataset](https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis) tailored for text classification.
-- The model achieved an accuracy of **72.15%**, which serves as a benchmark to understand the impact of debiasing on NLP tasks.
-![example](example.png)
-- The comparison between the classification performance before and after debiasing suggested that the debiasing process preserved the utility of the embeddings while promoting fairness.
+### Model Optimization and Evaluation
 
-### Interpretation of Findings
-The text classification task demonstrated that the debiased embeddings could be effectively utilized without compromising the model's performance. The accuracy obtained suggests that the embeddings, even after transformation, retained significant semantic information necessary for distinguishing between different sentiment classes.
+The evaluation metrics focused on were accuracy, precision, recall, and F1-score, with a particular emphasis on precision and recall to effectively measure the model's capability in detecting hate speech instances.
 
-### Reflection on Challenges
-Incorporating bias reduction while maintaining the quality of the embeddings for downstream tasks such as text classification presented a multifaceted challenge. It was crucial to balance the removal of bias against the potential loss of semantic meaning that could affect classification performance.
+### Results and Insights
+![loss.png]
+
+The precision and recall plot suggests that while the model learns to identify hate speech more precisely over time, its recall, especially on the validation data, remains low. The high variability in validation precision and the consistently low validation recall indicate the model's difficulty in generalizing the detection of hate speech to unseen data.
+
+![precision.png]
+
+The loss and accuracy plot demonstrates that the model is improving on the training set but struggles to maintain consistent performance on the validation set. The fluctuations in validation loss and accuracy underscore the challenges of modeling with imbalanced data, emphasizing the need for a more nuanced evaluation of model performance, particularly in terms of how well it identifies the minority class (hate speech).
+
+Both plots together suggest that while the LSTM model is learning to identify hate speech, its ability to do so is still constrained by the imbalanced nature of the dataset. Precision and recall are crucial metrics for this problem, and the model's relatively low recall on the training plot indicates that further work is needed to balance the trade-off between precision and recall. If I had more time to do, hyperparameter tuning, more training epochs, or techniques to address class imbalance could potentially lead to better model performance.
+
+I also run some classic ML and below is the metrics comparison:
+![comparison.png]
+
+For LSTM, despite having the highest precision, has a very low recall, indicating that while it's cautious about labeling a comment as hate speech, it fails to detect many actual instances of it. This cautious approach can be due to the LSTM's sensitivity to the sequence of words and the context, which might make it more conservative in its predictions.
+
+The observation that tree-based models with BERT embeddings perform well in detecting hate speech is interesting. BERT provides rich contextual embeddings which, when used with tree-based models, seem to capture the nuances of hate speech effectively, as indicated by their higher recall rates. The high recall suggests that these models, armed with the power of BERT embeddings, are able to recognize a broad variety of language patterns associated with hate speech.
+
+If the primary concern is to minimize the presence of hate speech (minimize false negatives), a model with higher recall may be more desirable, even if it means accepting more false positives (lower precision). However, if it is crucial to maintain user engagement by minimizing wrongful censorship (minimize false positives), a model with higher precision would be preferable.
+
+The choice of model could be further refined by tuning the decision thresholds, considering the costs of false positives versus false negatives, and perhaps combining models in an ensemble to leverage the strengths of each.
+
+### References
+- [Hate Speech Datasets](https://github.com/sidneykung/twitter_hate_speech_detection)
+- [Pretrained BERT model from HuggingFace](https://huggingface.co/Hate-speech-CNERG/bert-base-uncased-hatexplain)
