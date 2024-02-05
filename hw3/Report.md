@@ -3,6 +3,7 @@
 # HW#3 Report - Hate Speech Detection
 
 [Click to see the programming notebook](hate_speech_detection.ipynb)
+
 [Click to navigate to the repo](https://github.com/VaLeRiEe37/NLXLLM-portfolio/edit/main/hw3)
 
 ## Task Description
